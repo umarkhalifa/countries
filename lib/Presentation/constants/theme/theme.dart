@@ -6,10 +6,9 @@ class AppThemes{
   static ThemeData lightTheme = ThemeData(
       primaryColor: const Color(0xffff6d00),
       fontFamily: "Poppins",
-      shadowColor: Colors.black.withOpacity(0.0),
       iconTheme: const IconThemeData(color: Colors.black),
       scaffoldBackgroundColor: Colors.white,
-      backgroundColor: Colors.grey.withOpacity(0.2),
+      shadowColor: Colors.grey.withOpacity(0.2),
       dividerColor: Colors.transparent,
       colorScheme: const ColorScheme(
           brightness: Brightness.light,
@@ -26,9 +25,8 @@ class AppThemes{
   static ThemeData darkTheme = ThemeData(
       primaryColor: const Color(0xffff6d00),
       fontFamily: "Poppins",
-      backgroundColor: Colors.grey.withOpacity(0.1),
+      shadowColor: Colors.grey.withOpacity(0.1),
       iconTheme: const IconThemeData(color: Colors.white),
-      shadowColor: Colors.white.withOpacity(0.0),
       dividerColor: Colors.transparent,
       cardColor: Colors.transparent,
       scaffoldBackgroundColor: const Color(0xff000e23),

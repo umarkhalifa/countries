@@ -18,7 +18,7 @@ class CountryRepository {
           area:  country['area'],
           capital:  country['capital'] ?? 'NA',
           coatOfArms:  country['coatOfArms']['png'],
-          currency:  country['currencies'],
+          currencies:  country['currencies'],
           flag:  country['flags']['png'],
           language: country['languages'],
           population: country['population'],

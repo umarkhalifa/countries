@@ -5,6 +5,7 @@ import 'package:all_countries/Presentation/constants/measurement.dart';
 import 'package:all_countries/Presentation/constants/theme/theme_provider.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/bottomsheet.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/country_detail.dart';
+import 'package:all_countries/Presentation/screens/home_view/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,7 +20,7 @@ class HomePortrait extends ConsumerWidget {
     final themeMode = ref.watch(themeProvider).isDark;
     final view = ref.watch(countryProvider);
     final continent = ref.watch(continentListProvider);
-    final timezone = ref.watch(continentListProvider);
+    final timezone = ref.watch(timezoneListProvider);
     Query query = Query(continent: continent, timezone: timezone);
     return view.when(data: (data) {
       List<Country> countries = filter(data, query);
@@ -37,7 +38,7 @@ class HomePortrait extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  const Text("Explore",style: TextStyle(fontSize: 20,fontFamily: "Elsie"),),
+                  Text("Explore",style: TextStyle(fontSize: 20,fontFamily: "Elsie",color: theme.colorScheme.onBackground),),
                   Text(".",style: TextStyle(fontSize: 20,fontFamily: "Elsie",color: theme.primaryColor),),
                   const Spacer(),
                   GestureDetector(
@@ -64,9 +65,7 @@ class HomePortrait extends ConsumerWidget {
                 child: TextFormField(
                   style: TextStyle(color: theme.colorScheme.secondary),
                   textAlign: TextAlign.center,
-                  onChanged: (value){
-                    countries.where((element) => element.name.contains(value));
-                  },
+                  onFieldSubmitted: (value) => showSearch(delegate: ShowSearch(),context: context),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     prefixIcon: const Icon(Icons.search),
