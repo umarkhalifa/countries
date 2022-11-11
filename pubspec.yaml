@@ -44,6 +44,7 @@ dependencies:
   json_annotation:
   dio:
   freezed_annotation:
+  font_awesome_flutter:
 
 
 
@@ -99,9 +100,9 @@ flutter:
           weight: 500
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 800
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+    - family: Elsie
+      fonts:
+        - asset: assets/fonts/elsie.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

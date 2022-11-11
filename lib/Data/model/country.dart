@@ -1,44 +1,45 @@
 class Country {
   String name;
-  String capital;
-  int population;
+  dynamic capital;
+  int? population;
   double area;
   String region;
-  String subRegion;
+  String? subRegion;
   String timezone;
-  String currency;
-  String language;
+  dynamic currency;
+  dynamic language;
   String flag;
-  String coatOfArms;
-  int callingCode;
+  String? coatOfArms;
+  // String? callingCode;
 
   Country(
-      {required this.name,
+      { required this.name,
       required this.area,
-      required this.capital,
-      required this.coatOfArms,
-      required this.currency,
-      required this.flag,
-      required this.language,
-      required this.population,
-      required this.region,
-      required this.subRegion,
-      required this.timezone,
-      required this.callingCode});
+      this.capital,
+        this.coatOfArms,
+       this.currency,
+       required this.flag,
+       this.language,
+       this.population,
+       required this.region,
+       this.subRegion,
+       required this.timezone,
+        // this.callingCode
+      });
 
   factory Country.fromJson(Map<String, dynamic> json) {
     return Country(
-        name: json['name'],
+        name: json['name']['common'],
         area: json['area'],
-        callingCode: json['callingCodes'][0],
-        capital: json['capital'],
-        coatOfArms: json['alpha2Code'],
-        currency: json['currencies'][0]['name'],
+        // callingCode: json['callingCodes'][0],
+        capital: json['capital'][0],
+        coatOfArms: json['coatOfArms']['png'],
+        currency: json['currencies'],
         flag: json['flags']['png'],
-        language: json['languages'][0]['name'],
+        language: json['languages'],
         population: json['population'],
         region: json['region'],
-        subRegion: json['subregion'],
-        timezone: json['currencies'][0]['name']);
+        subRegion: json['subregion'] ?? "NA",
+        timezone: json['timezones'][0]);
   }
 }
