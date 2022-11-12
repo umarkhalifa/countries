@@ -177,7 +177,7 @@ class HomePortrait extends ConsumerWidget {
         ),
       );
     }, error: (_, __) {
-      return const Text('error');
+      return Center(child:  Text('error',style: TextStyle(color: theme.colorScheme.onBackground),));
     }, loading: () {
       return SpinKitChasingDots(
         color: theme.primaryColor,
