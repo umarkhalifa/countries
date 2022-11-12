@@ -38,16 +38,19 @@ showBottom({required BuildContext context}) {
                             fontWeight: FontWeight.w500,
                             fontSize: 19),
                       ),
-                      Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                            color: theme.colorScheme.secondary.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Icon(
-                          FontAwesomeIcons.x,
-                          color: theme.colorScheme.secondary,
-                          size: 12,
+                      GestureDetector(
+                        onTap: (){Navigator.pop(context);},
+                        child: Container(
+                          height: 20,
+                          width: 20,
+                          decoration: BoxDecoration(
+                              color: theme.colorScheme.secondary.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Icon(
+                            FontAwesomeIcons.x,
+                            color: theme.colorScheme.secondary,
+                            size: 12,
+                          ),
                         ),
                       )
                     ],
