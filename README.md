@@ -10,6 +10,7 @@ ALL COUNTRIES
   - Filter search by timezone
 
 CODEBASE 
+ <br/>
  This project was implemented with a custom software architecture design similar to the MVC architecture where:
   - Model is known as data
   - View is know as presentation
@@ -31,6 +32,7 @@ UPCOMING FEATURES
  - Show images of countries
  
 CHALLENGES
+ <br/>
  The major challenge faced was the parsing of the api data and that was solved by hardcoding my models with the help of the json to dart converter.
 
  APP LINK
