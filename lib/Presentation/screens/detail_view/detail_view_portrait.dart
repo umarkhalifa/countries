@@ -38,7 +38,9 @@ class DetailPortrait extends HookWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Consumer(builder: (context, ref, child) {
                 final pageIndex = ref.watch(detailProvider);
                 return SizedBox(
@@ -53,34 +55,37 @@ class DetailPortrait extends HookWidget {
                             width: context.screenWidth(),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7)),
-                            child: Image.network(
-                              images[pageIndex]!,
-                              fit: pageIndex == 0
-                                  ? BoxFit.fitWidth
-                                  : BoxFit.contain,
-                              //! IMAGE LOADING WIDGET
-                              loadingBuilder: (context, child, loadingProgress) {
-                                if (loadingProgress == null) {
-                                  return child;
-                                }
-                                return  Center(
-                                  child: SpinKitChasingDots(
-                                    color: theme.primaryColor,
-                                  ),
-                                );
-                              },
+                            child: images[pageIndex] == null
+                                ? const Text("NA")
+                                : Image.network(
+                                    images[pageIndex]!,
+                                    fit: pageIndex == 0
+                                        ? BoxFit.fitWidth
+                                        : BoxFit.contain,
+                                    //! IMAGE LOADING WIDGET
+                                    loadingBuilder:
+                                        (context, child, loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      }
+                                      return Center(
+                                        child: SpinKitChasingDots(
+                                          color: theme.primaryColor,
+                                        ),
+                                      );
+                                    },
 
-                              //! IMAGE FETCH ERROR
-                              errorBuilder: (context, object, trace) {
-                                return  Center(
-                                  child: Icon(
-                                    Icons.error,
-                                    color: theme.primaryColor,
-                                    size: 20,
+                                    //! IMAGE FETCH ERROR
+                                    errorBuilder: (context, object, trace) {
+                                      return Center(
+                                        child: Icon(
+                                          Icons.error,
+                                          color: theme.primaryColor,
+                                          size: 20,
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            ),
                           );
                         },
                         itemCount: images.length,
@@ -173,7 +178,7 @@ class DetailPortrait extends HookWidget {
               ),
               detailText(
                   title: "Population",
-                  description: country.population.toString(),
+                  description: country.population == null ? 'NA': country.population.toString(),
                   context: context),
               detailText(
                   title: "Region",
@@ -211,18 +216,18 @@ class DetailPortrait extends HookWidget {
                   context: context),
               detailText(
                   title: "Landlocked",
-                  description: country.landlocked.toString(),
+                  description: country.landlocked == null ? 'NA': country.landlocked.toString(),
                   context: context),
               const SizedBox(
                 height: 40,
               ),
               detailText(
                   title: "Independent",
-                  description: country.independent.toString(),
+                  description: country.independent == null ? 'NA' :country.independent.toString(),
                   context: context),
               detailText(
                   title: "Area",
-                  description: country.area.toString(),
+                  description: country.area == null ? 'NA' :country.area.toString(),
                   context: context),
               detailText(
                   title: "Currencies",
