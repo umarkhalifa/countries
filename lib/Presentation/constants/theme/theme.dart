@@ -7,6 +7,7 @@ class AppThemes{
       primaryColor: const Color(0xffff6d00),
       fontFamily: "Poppins",
       iconTheme: const IconThemeData(color: Colors.black),
+
       scaffoldBackgroundColor: Colors.white,
       shadowColor: Colors.grey.withOpacity(0.2),
       dividerColor: Colors.transparent,
@@ -23,6 +24,15 @@ class AppThemes{
           surface: Colors.white,
           onSurface: Colors.black));
   static ThemeData darkTheme = ThemeData(
+    textTheme: const TextTheme(
+      headline6: TextStyle(color: Colors.grey)
+    ),
+      appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: IconThemeData(
+              color: Colors.white)),
+      inputDecorationTheme: const InputDecorationTheme(border: InputBorder.none,hintStyle: TextStyle(color: Colors.grey)),
       primaryColor: const Color(0xffff6d00),
       fontFamily: "Poppins",
       shadowColor: Colors.grey.withOpacity(0.1),

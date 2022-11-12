@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../../../Data/model/country.dart';
 
@@ -22,8 +23,29 @@ class CountryCard extends StatelessWidget {
             height: 50,
             width: 50,
             child: Image.network(
-              country.flag,
+              country.flag!,
               fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+                return  Center(
+                  child: SpinKitChasingDots(
+                    color: theme.primaryColor,
+                  ),
+                );
+              },
+
+              //! IMAGE FETCH ERROR
+              errorBuilder: (context, object, trace) {
+                return  Center(
+                  child: Icon(
+                    Icons.error,
+                    color: theme.primaryColor,
+                    size: 20,
+                  ),
+                );
+              },
             ),
           ),
         ),
@@ -34,14 +56,14 @@ class CountryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              country.name,
+              country.name!,
               style: TextStyle(
                   color: theme.colorScheme.onBackground),
             ),
             Text(
-              country.capital == "NA"
+              country.capital == null
                   ? "NA"
-                  : country.capital[0],
+                  : country.capital![0],
               style: TextStyle(
                   color: theme.colorScheme.secondary,
                   fontSize: 11),

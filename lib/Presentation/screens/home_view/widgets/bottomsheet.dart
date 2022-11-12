@@ -1,11 +1,11 @@
-import 'package:all_countries/Logic/view_model_provider.dart';
 import 'package:all_countries/Presentation/constants/measurement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../Data/model/continents_timezones.dart';
-import '../../../../Data/model/test.dart';
+import '../../../../Logic/view_model/continent_filter.dart';
+import '../../../../Logic/view_model/timezone_filter.dart';
 
 showBottom({required BuildContext context}) {
   final theme = Theme.of(context);

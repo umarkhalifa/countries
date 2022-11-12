@@ -1,8 +1,9 @@
 import 'package:all_countries/Data/model/country.dart';
-import 'package:all_countries/Data/model/test.dart';
+import 'package:all_countries/Data/model/query.dart';
 import 'package:all_countries/Logic/view_model_provider.dart';
 import 'package:all_countries/Presentation/constants/measurement.dart';
 import 'package:all_countries/Presentation/constants/theme/theme_provider.dart';
+import 'package:all_countries/Presentation/screens/detail_view/detail_view_portrait.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/bottomsheet.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/country_detail.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/search.dart';
@@ -10,6 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../Logic/view_model/continent_filter.dart';
+import '../../../Logic/view_model/query_filter.dart';
+import '../../../Logic/view_model/timezone_filter.dart';
 
 class HomePortrait extends ConsumerWidget {
   const HomePortrait({Key? key}) : super(key: key);
@@ -26,7 +31,7 @@ class HomePortrait extends ConsumerWidget {
       List<Country> countries = filter(data, query);
       countries.sort(
         (a, b) {
-          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+          return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
         },
       );
       return Padding(
@@ -38,8 +43,20 @@ class HomePortrait extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  Text("Explore",style: TextStyle(fontSize: 20,fontFamily: "Elsie",color: theme.colorScheme.onBackground),),
-                  Text(".",style: TextStyle(fontSize: 20,fontFamily: "Elsie",color: theme.primaryColor),),
+                  Text(
+                    "Explore",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Elsie",
+                        color: theme.colorScheme.onBackground),
+                  ),
+                  Text(
+                    ".",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: "Elsie",
+                        color: theme.primaryColor),
+                  ),
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
@@ -55,24 +72,31 @@ class HomePortrait extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 15),
-              Container(
-                height: context.screenHeight() * 0.06,
-                width: context.screenWidth(),
-                decoration: BoxDecoration(
-                    color: theme.colorScheme.secondary.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(5)),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextFormField(
-                  style: TextStyle(color: theme.colorScheme.secondary),
-                  textAlign: TextAlign.center,
-                  onFieldSubmitted: (value) => showSearch(delegate: ShowSearch(),context: context),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    prefixIcon: const Icon(Icons.search),
-                    hintText: "Search Country",
-                    hintStyle: TextStyle(color: theme.colorScheme.secondary,fontSize: 17)
-                  ),
-                )
+              GestureDetector(
+                onTap: (){
+                  showSearch(delegate: ShowSearch(),context: context);
+                },
+                child: Container(
+                    height: context.screenHeight() * 0.06,
+                    width: context.screenWidth(),
+                    decoration: BoxDecoration(
+                        color: theme.colorScheme.secondary.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(5)),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.search,
+                          color: theme.colorScheme.onBackground,
+                        ),
+                        Text(
+                          "Search Country",
+                          style: TextStyle(color: theme.colorScheme.onBackground),
+                        ),
+                        const SizedBox()
+                      ],
+                    )),
               ),
               const SizedBox(
                 height: 15,
@@ -123,18 +147,30 @@ class HomePortrait extends ConsumerWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 20,),
               Expanded(
                 child: ListView.separated(
                     itemBuilder: (context, index) {
-                      return CountryCard(
-                          country: countries[index], theme: theme);
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailPortrait(
+                                      country: countries[index])));
+                        },
+                        child: CountryCard(
+                            country: countries[index], theme: theme),
+                      );
                     },
                     separatorBuilder: (_, __) {
                       return const SizedBox(
                         height: 20,
                       );
                     },
-                    itemCount: countries.length > 15 ? 15 : countries.length),
+                    itemCount: countries.length > 15 ? 15 : countries.length,
+                physics: const BouncingScrollPhysics(),
+                ),
               )
             ],
           ),
