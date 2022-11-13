@@ -72,7 +72,6 @@ showLanguage({required BuildContext context}) {
                             groupValue: currentLanguage,
                             onChanged: (value) {
                               ref.read(localeProvider).setLocale(locale);
-                              print(currentLanguage);
                             }),
                       ),
                     );

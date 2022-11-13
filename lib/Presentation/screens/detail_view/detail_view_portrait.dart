@@ -6,6 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../L10n/l10n.dart';
+import '../../../Logic/view_model/language_provider.dart';
+
 
 final detailProvider = StateProvider.autoDispose((ref) => 0);
 
@@ -39,14 +42,19 @@ class DetailPortrait extends HookWidget {
                       color: theme.colorScheme.onBackground,
                     ),
                   ),
-                  Text(
-                    country.name!,
-                    style: TextStyle(
-                        color: theme.colorScheme.onBackground,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18
-                    ),
-                  ),
+                  Consumer(builder: (context, ref, _){
+                    final locale = ref.watch(localeProvider).locale;
+                    final language = L10n.getCountryLanguage(locale.languageCode);
+                    return Text(
+                      country.translation![language]['common'],
+                      style: TextStyle(
+                          color: theme.colorScheme.onBackground,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18
+                      ),
+                    );
+                  }),
+
                   const SizedBox()
                 ],
               ),
@@ -68,7 +76,7 @@ class DetailPortrait extends HookWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7)),
                             child: images[pageIndex] == null
-                                ? const Text("NA")
+                                ? const Center(child: Text("Image not available"))
                                 : Image.network(
                                     images[pageIndex]!,
                                     fit: pageIndex == 0

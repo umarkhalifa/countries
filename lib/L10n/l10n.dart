@@ -30,5 +30,25 @@ class L10n{
 
     }
   }
+  static String getCountryLanguage(String code){
+    switch (code){
+      case 'de':
+        return "deu";
+      case 'es':
+        return "spa";
+      case 'fr':
+        return "fra";
+      case 'it':
+        return "ita";
+      case 'pt':
+        return "por";
+      case 'tr':
+        return "tur";
+      default :
+        return "cym";
+
+    }
+  }
+
 
 }

@@ -18,6 +18,7 @@ class Country {
   final Map<String, dynamic>? currencies;
   final List<String>? borders;
   final Map<String, dynamic>? gini;
+  final Map<String, dynamic>? translation;
 
   Country({
     this.name,
@@ -39,6 +40,7 @@ class Country {
     this.currencies,
     this.borders,
     this.gini,
+    this.translation
   });
 
   factory Country.fromJson(Map<String, dynamic> json) {
@@ -67,6 +69,7 @@ class Country {
         borders: (json['borders'] as List?)
             ?.map((dynamic e) => e as String)
             .toList(),
-        gini: json['gini'] as Map<String, dynamic>?);
+        gini: json['gini'] as Map<String, dynamic>?,
+        translation: json['translations'] as Map<String, dynamic>?);
   }
 }
