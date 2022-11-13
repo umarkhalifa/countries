@@ -1,0 +1,53 @@
+{
+  "language": "English",
+  "@language":{
+    "description": "The current language"
+  },
+  "population": "Population",
+  "@population": {
+     "description": "The population"
+  },
+  "region": "Region",
+    "@region": {
+       "description": "The region"
+    },
+  "subregion": "Subregion",
+    "@subregion": {
+       "description": "The subregion"
+    },
+  "capital": "Capital",
+    "@capital": {
+       "description": "The capital"
+    },
+  "official language": "Official Language",
+    "@official language": {
+       "description": "The official language"
+    },
+  "ethnic group": "Ethnic Group",
+    "@ethnic group": {
+       "description": "The ethnic group"
+    },
+  "borders": "Borders",
+    "@borders": {
+       "description": "The borders"
+    },
+  "landlocked": "Landlocked",
+    "@landlocked": {
+       "description": "The landlocked"
+    },
+  "independent": "Independent",
+    "@independent": {
+       "description": "The independent"
+    },
+  "area": "Area",
+    "@area": {
+       "description": "The area"
+    },
+  "currencies": "Currencies",
+    "@currencies": {
+       "description": "currencies"
+    }
+
+
+
+}

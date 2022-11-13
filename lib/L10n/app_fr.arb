@@ -1,0 +1,14 @@
+{
+    "language": "Français",
+    "population": "Population",
+    "region": "Région",
+      "subregion": "Sous-région",
+       "capital": "Capital",
+       "official language": "Langue officielle",
+       "ethnic group": "Groupe ethnique",
+       "borders": "Les frontières",
+       "landlocked": "Enclavé",
+       "independent": "Indépendant",
+       "area": "Zone",
+       "currencies": "Devises"
+}

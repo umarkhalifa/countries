@@ -1,0 +1,14 @@
+{
+    "language": "Türk",
+    "population": "Nüfus",
+       "region": "Bölge",
+       "subregion": "Alt bölge",
+       "capital": "Başkent",
+       "official language": "Resmi dil",
+       "ethnic group": "Etnik grup",
+       "borders": "Sınırlar",
+       "landlocked": "Karayla çevrili",
+       "independent": "Bağımsız",
+       "area": "Alan",
+       "currencies": "Para birimleri"
+}
