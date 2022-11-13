@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class L10n{
   static final all = [
-    const Locale('en_US'),
+    const Locale('en'),
     const Locale('es'),
     const Locale('fr'),
     const Locale('de'),
