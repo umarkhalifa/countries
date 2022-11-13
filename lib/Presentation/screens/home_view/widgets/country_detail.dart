@@ -72,7 +72,7 @@ class CountryCard extends StatelessWidget {
               Text(
                 country.capital == null ? "NA" : country.capital![0],
                 style:
-                    TextStyle(color: theme.colorScheme.secondary, fontSize: 11),
+                    TextStyle(color: theme.colorScheme.secondary),
               ),
             ],
           ),

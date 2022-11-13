@@ -8,16 +8,23 @@ import '../../../../Data/model/country.dart';
 
 class ShowSearch extends SearchDelegate {
   final bool isDark;
+
   ShowSearch({required this.isDark});
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return isDark? AppThemes.darkTheme : AppThemes.lightTheme;
+    return isDark ? AppThemes.darkTheme : AppThemes.lightTheme;
   }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [IconButton(onPressed: () {query = '';}, icon: const Icon(Icons.clear))];
+    return [
+      IconButton(
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear))
+    ];
   }
 
   @override
@@ -39,17 +46,20 @@ class ShowSearch extends SearchDelegate {
           countries.add(country);
         }
       }
-      return ListView.separated(
-          itemBuilder: (context, index) {
-            return CountryCard(
-                country: countries[index], theme: Theme.of(context));
-          },
-          separatorBuilder: (_, __) {
-            return const SizedBox(
-              height: 20,
-            );
-          },
-          itemCount: countries.length);
+      return Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ListView.separated(
+            itemBuilder: (context, index) {
+              return CountryCard(
+                  country: countries[index], theme: Theme.of(context));
+            },
+            separatorBuilder: (_, __) {
+              return const SizedBox(
+                height: 20,
+              );
+            },
+            itemCount: countries.length),
+      );
     });
   }
 
@@ -64,17 +74,20 @@ class ShowSearch extends SearchDelegate {
             countries.add(country);
           }
         }
-        return ListView.separated(
-            itemBuilder: (context, index) {
-              return CountryCard(
-                  country: countries[index], theme: Theme.of(context));
-            },
-            separatorBuilder: (_, __) {
-              return const SizedBox(
-                height: 20,
-              );
-            },
-            itemCount: countries.length);
+        return Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: ListView.separated(
+              itemBuilder: (context, index) {
+                return CountryCard(
+                    country: countries[index], theme: Theme.of(context));
+              },
+              separatorBuilder: (_, __) {
+                return const SizedBox(
+                  height: 20,
+                );
+              },
+              itemCount: countries.length),
+        );
       },
     );
   }

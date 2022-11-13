@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 final detailProvider = StateProvider.autoDispose((ref) => 0);
 
@@ -26,6 +28,7 @@ class DetailPortrait extends HookWidget {
           child: ListView(
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -36,6 +39,15 @@ class DetailPortrait extends HookWidget {
                       color: theme.colorScheme.onBackground,
                     ),
                   ),
+                  Text(
+                    country.name!,
+                    style: TextStyle(
+                        color: theme.colorScheme.onBackground,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18
+                    ),
+                  ),
+                  const SizedBox()
                 ],
               ),
               const SizedBox(
@@ -177,19 +189,21 @@ class DetailPortrait extends HookWidget {
                 height: 20,
               ),
               detailText(
-                  title: "Population",
-                  description: country.population == null ? 'NA': country.population.toString(),
+                  title: AppLocalizations.of(context)!.population,
+                  description: country.population == null
+                      ? 'NA'
+                      : country.population.toString(),
                   context: context),
               detailText(
-                  title: "Region",
+                  title: AppLocalizations.of(context)!.region,
                   description: country.region ?? 'NA',
                   context: context),
               detailText(
-                  title: "Sub region",
+                  title: AppLocalizations.of(context)!.subregion,
                   description: country.subregion ?? 'NA',
                   context: context),
               detailText(
-                  title: "Capital",
+                  title: AppLocalizations.of(context)!.capital,
                   description:
                       country.capital == null ? 'NA' : country.capital![0],
                   context: context),
@@ -197,40 +211,45 @@ class DetailPortrait extends HookWidget {
                 height: 40,
               ),
               detailText(
-                  title: "Official Language",
+                  title: AppLocalizations.of(context)!.official_language,
                   description: country.languages == null
                       ? 'NA'
                       : country.languages!.values.join(','),
                   context: context),
               detailText(
-                  title: "Ethic group",
+                  title: AppLocalizations.of(context)!.ethnic_group,
                   description: country.ethnic == null
                       ? 'NA'
                       : country.ethnic!['eng']['m'],
                   context: context),
               detailText(
-                  title: "Borders",
+                  title: AppLocalizations.of(context)!.borders,
                   description: country.borders == null
                       ? 'NA'
                       : country.borders!.map((e) => e).join(','),
                   context: context),
               detailText(
-                  title: "Landlocked",
-                  description: country.landlocked == null ? 'NA': country.landlocked.toString(),
+                  title: AppLocalizations.of(context)!.ethnic_group,
+                  description: country.landlocked == null
+                      ? 'NA'
+                      : country.landlocked.toString(),
                   context: context),
               const SizedBox(
                 height: 40,
               ),
               detailText(
-                  title: "Independent",
-                  description: country.independent == null ? 'NA' :country.independent.toString(),
+                  title: AppLocalizations.of(context)!.independent,
+                  description: country.independent == null
+                      ? 'NA'
+                      : country.independent.toString(),
                   context: context),
               detailText(
-                  title: "Area",
-                  description: country.area == null ? 'NA' :country.area.toString(),
+                  title: AppLocalizations.of(context)!.area,
+                  description:
+                      country.area == null ? 'NA' : country.area.toString(),
                   context: context),
               detailText(
-                  title: "Currencies",
+                  title: AppLocalizations.of(context)!.currencies,
                   description: country.currencies == null
                       ? 'NA'
                       : country.currencies!.values.first['name'],

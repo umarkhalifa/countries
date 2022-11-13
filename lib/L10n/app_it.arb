@@ -4,11 +4,11 @@
        "region": "Regione",
        "subregion": "Sottoregione",
        "capital": "Capitale",
-       "official language": "Lingua ufficiale",
-       "ethnic group": "Gruppo etnico",
+       "official_language": "Lingua ufficiale",
+       "ethnic_group": "Gruppo etnico",
        "borders": "Frontiere",
        "landlocked": "Senza sbocco sul mare",
        "independent": "Indipendente",
        "area": "La zona",
-       "currencies": "Valute",
+       "currencies": "Valute"
 }

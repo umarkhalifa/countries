@@ -6,6 +6,7 @@ import 'package:all_countries/Presentation/constants/theme/theme_provider.dart';
 import 'package:all_countries/Presentation/screens/detail_view/detail_view_portrait.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/bottomsheet.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/country_detail.dart';
+import 'package:all_countries/Presentation/screens/home_view/widgets/language_bottom_sheet.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -109,21 +110,26 @@ class HomePortrait extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: context.screenHeight() * 0.05,
-                      width: context.screenWidth() * 0.2,
-                      decoration: BoxDecoration(
-                          color: theme.scaffoldBackgroundColor,
-                          boxShadow: [
-                            BoxShadow(
-                                color: theme.shadowColor,
-                                offset: const Offset(0, 1),
-                                blurRadius: 7)
-                          ]),
-                      child: Center(
-                        child: Icon(
-                          FontAwesomeIcons.globe,
-                          color: theme.colorScheme.onBackground,
+                    GestureDetector(
+                      onTap: (){
+                        showLanguage(context: context);
+                      },
+                      child: Container(
+                        height: context.screenHeight() * 0.05,
+                        width: context.screenWidth() * 0.2,
+                        decoration: BoxDecoration(
+                            color: theme.scaffoldBackgroundColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: theme.shadowColor,
+                                  offset: const Offset(0, 1),
+                                  blurRadius: 7)
+                            ]),
+                        child: Center(
+                          child: Icon(
+                            FontAwesomeIcons.globe,
+                            color: theme.colorScheme.onBackground,
+                          ),
                         ),
                       ),
                     ),

@@ -19,12 +19,12 @@
     "@capital": {
        "description": "The capital"
     },
-  "official language": "Official Language",
-    "@official language": {
+  "official_language": "Official Language",
+    "@official_language": {
        "description": "The official language"
     },
-  "ethnic group": "Ethnic Group",
-    "@ethnic group": {
+  "ethnic_group": "Ethnic Group",
+    "@ethnic_group": {
        "description": "The ethnic group"
     },
   "borders": "Borders",

@@ -43,6 +43,7 @@ class AppThemes {
         hintStyle: TextStyle(color: Colors.grey),
       ),
       primaryColor: const Color(0xffff6d00),
+      unselectedWidgetColor: Colors.white,
       fontFamily: "Poppins",
       shadowColor: Colors.grey.withOpacity(0.1),
       iconTheme: const IconThemeData(color: Colors.white),
