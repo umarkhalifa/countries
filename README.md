@@ -26,10 +26,9 @@ LIBRARIES AND TOOLS
  - flutter_riverpod(State management)
 
 UPCOMING FEATURES
- - Localization of different languages
- - Ui animationd
+ - Ui animations
  - Optimize device layout performance
- - Show images of countries
+ - Show map images of countries
  
 CHALLENGES
  <br/>
@@ -37,7 +36,7 @@ CHALLENGES
 
  APP LINK
  <br/>
- https://drive.google.com/file/d/1AcC5nF4fBueE2iwp52tQDW7tgzeVmI01/view?usp=sharing
+https://drive.google.com/file/d/1er0KkFEagAWvydO4TMlnyvSPZyCOBnJB/view?usp=sharing
 
 
  APPETIZE.IO LINK
