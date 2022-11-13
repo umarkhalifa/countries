@@ -5,10 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LocaleProvider extends ChangeNotifier{
-  Locale locale = Locale(Platform.localeName);
+  Locale locale = const Locale('en');
 
   void setLocale(Locale newLocale){
-    if(L10n.all.contains(locale) == false) return;
     locale = newLocale;
     notifyListeners();
   }

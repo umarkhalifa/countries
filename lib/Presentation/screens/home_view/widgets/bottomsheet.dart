@@ -158,6 +158,55 @@ showBottom({required BuildContext context}) {
                                 )
                                 .toList(),
                   ),
+              const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(continentListProvider.notifier).reset();
+                        ref.read(timezoneListProvider.notifier).reset();
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: context.screenHeight() * 0.06,
+                        width: context.screenWidth() * 0.25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border:
+                              Border.all(color: theme.colorScheme.onBackground),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Reset",
+                            style: TextStyle(
+                                color: theme.colorScheme.onBackground),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: context.screenHeight() * 0.06,
+                        width: context.screenWidth() * 0.65,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: theme.primaryColor,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Show Results",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],)
                   // ExpansionPanelList(
                   //   expansionCallback: (index, isExpanded) {
                   //     if (index == 0) {
