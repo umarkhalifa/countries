@@ -7,6 +7,9 @@ import '../../../../Data/model/continents_timezones.dart';
 import '../../../../Logic/view_model/continent_filter.dart';
 import '../../../../Logic/view_model/timezone_filter.dart';
 
+final continentIndex = StateProvider((ref) => false);
+final timezoneIndex = StateProvider((ref) => false);
+
 showBottom({required BuildContext context}) {
   final theme = Theme.of(context);
   showModalBottomSheet(
@@ -39,12 +42,15 @@ showBottom({required BuildContext context}) {
                             fontSize: 19),
                       ),
                       GestureDetector(
-                        onTap: (){Navigator.pop(context);},
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                         child: Container(
                           height: 20,
                           width: 20,
                           decoration: BoxDecoration(
-                              color: theme.colorScheme.secondary.withOpacity(0.2),
+                              color:
+                                  theme.colorScheme.secondary.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(5)),
                           child: Icon(
                             FontAwesomeIcons.x,
@@ -55,17 +61,31 @@ showBottom({required BuildContext context}) {
                       )
                     ],
                   ),
-                  ExpansionPanelList.radio(
+                  ExpansionPanelList(
+                    expansionCallback: (index, isExpanded){
+                      if(index == 0){
+                        ref.read(continentIndex.notifier).state = !isExpanded;
+                      }else{
+                        ref.read(timezoneIndex.notifier).state = !isExpanded;
+
+                      }
+                    },
                     elevation: 0,
                     children: [
-                      ExpansionPanelRadio(
-                        value: "continent",
+                      ExpansionPanel(
+
+                        isExpanded: ref.watch(continentIndex),
                         canTapOnHeader: true,
                         headerBuilder: (context, isExpanded) {
-                          return  ListTile(
-
-                            title: Text("Continent",style: TextStyle(color: theme.colorScheme.onBackground),),
-
+                          return ListTile(
+                            title: Text(
+                              "Continent",
+                              style: TextStyle(
+                                  color: theme.colorScheme.onBackground),
+                            ),
+                            trailing: Icon(
+                              Icons.keyboard_arrow_down,color: theme.colorScheme.onBackground,
+                            ),
                           );
                         },
                         body: Column(
@@ -73,7 +93,10 @@ showBottom({required BuildContext context}) {
                           children: continents
                               .map(
                                 (e) => ListTile(
-                                  title: Text(e,style: TextStyle(color: theme.colorScheme.onBackground)),
+                                  title: Text(e,
+                                      style: TextStyle(
+                                          color:
+                                              theme.colorScheme.onBackground)),
                                   trailing: GestureDetector(
                                     onTap: () {
                                       continent.contains(e)
@@ -101,8 +124,8 @@ showBottom({required BuildContext context}) {
                                       child: continent.contains(e)
                                           ? Icon(
                                               Icons.check,
-                                              color: theme
-                                                  .scaffoldBackgroundColor,
+                                              color:
+                                                  theme.scaffoldBackgroundColor,
                                               size: 10,
                                             )
                                           : const SizedBox(),
@@ -113,12 +136,13 @@ showBottom({required BuildContext context}) {
                               .toList(),
                         ),
                       ),
-                      ExpansionPanelRadio(
-                        value: "timezone",
-
+                      ExpansionPanel(
+                        isExpanded: ref.watch(timezoneIndex),
                         headerBuilder: (context, isExpanded) {
-                          return  ListTile(
-                            title: Text("Timezone",style: TextStyle(color: theme.colorScheme.onBackground)),
+                          return ListTile(
+                            title: Text("Timezone",
+                                style: TextStyle(
+                                    color: theme.colorScheme.onBackground)),
                           );
                         },
                         body: Column(
@@ -126,7 +150,10 @@ showBottom({required BuildContext context}) {
                           children: timezones
                               .map(
                                 (e) => ListTile(
-                                  title: Text(e,style: TextStyle(color: theme.colorScheme.onBackground)),
+                                  title: Text(e,
+                                      style: TextStyle(
+                                          color:
+                                              theme.colorScheme.onBackground)),
                                   trailing: GestureDetector(
                                     onTap: () {
                                       timezone.contains(e)
@@ -175,31 +202,30 @@ showBottom({required BuildContext context}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           ref.read(continentListProvider.notifier).reset();
                           ref.read(timezoneListProvider.notifier).reset();
                           Navigator.pop(context);
-
                         },
                         child: Container(
                           height: context.screenHeight() * 0.07,
                           width: context.screenWidth() * 0.25,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border:
-                                Border.all(color: theme.colorScheme.onBackground),
+                            border: Border.all(
+                                color: theme.colorScheme.onBackground),
                           ),
                           child: Center(
                             child: Text(
                               "Reset",
-                              style:
-                              TextStyle(color: theme.colorScheme.onBackground),
+                              style: TextStyle(
+                                  color: theme.colorScheme.onBackground),
                             ),
                           ),
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pop(context);
                         },
                         child: Container(
@@ -212,8 +238,7 @@ showBottom({required BuildContext context}) {
                           child: const Center(
                             child: Text(
                               "Show Results",
-                              style:
-                                  TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),

@@ -34,99 +34,82 @@ class HomePortrait extends ConsumerWidget {
           return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
         },
       );
-      return Padding(
-        padding: const EdgeInsets.all(15),
-        child: SizedBox(
-          height: context.screenHeight(),
-          width: context.screenWidth(),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Explore",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: "Elsie",
-                        color: theme.colorScheme.onBackground),
-                  ),
-                  Text(
-                    ".",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: "Elsie",
-                        color: theme.primaryColor),
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      ref.read(themeProvider).toggleTheme(themeMode);
-                    },
-                    child: Icon(
-                      themeMode
-                          ? Icons.nightlight_round_sharp
-                          : Icons.wb_sunny_outlined,
-                      color: theme.colorScheme.onBackground,
+      return RefreshIndicator(
+        onRefresh: () {
+          return ref.refresh(countryProvider.future);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: SizedBox(
+            height: context.screenHeight(),
+            width: context.screenWidth(),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "Explore",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: "Elsie",
+                          color: theme.colorScheme.onBackground),
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 15),
-              GestureDetector(
-                onTap: (){
-                  showSearch(delegate: ShowSearch(),context: context);
-                },
-                child: Container(
-                    height: context.screenHeight() * 0.06,
-                    width: context.screenWidth(),
-                    decoration: BoxDecoration(
-                        color: theme.colorScheme.secondary.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(5)),
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: theme.colorScheme.onBackground,
-                        ),
-                        Text(
-                          "Search Country",
-                          style: TextStyle(color: theme.colorScheme.onBackground),
-                        ),
-                        const SizedBox()
-                      ],
-                    )),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: context.screenHeight() * 0.05,
-                    width: context.screenWidth() * 0.2,
-                    decoration: BoxDecoration(
-                        color: theme.scaffoldBackgroundColor,
-                        boxShadow: [
-                          BoxShadow(
-                              color: theme.shadowColor,
-                              offset: const Offset(0, 1),
-                              blurRadius: 7)
-                        ]),
-                    child: Center(
+                    Text(
+                      ".",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: "Elsie",
+                          color: theme.primaryColor),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(themeProvider).toggleTheme(themeMode);
+                      },
                       child: Icon(
-                        FontAwesomeIcons.globe,
+                        themeMode
+                            ? Icons.nightlight_round_sharp
+                            : Icons.wb_sunny_outlined,
                         color: theme.colorScheme.onBackground,
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showBottom(context: context);
-                    },
-                    child: Container(
+                    )
+                  ],
+                ),
+                const SizedBox(height: 15),
+                GestureDetector(
+                  onTap: () {
+                    showSearch(delegate: ShowSearch(isDark: themeMode), context: context);
+                  },
+                  child: Container(
+                      height: context.screenHeight() * 0.06,
+                      width: context.screenWidth(),
+                      decoration: BoxDecoration(
+                          color: theme.colorScheme.secondary.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(5)),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.search,
+                            color: theme.colorScheme.onBackground,
+                          ),
+                          Text(
+                            "Search Country",
+                            style:
+                                TextStyle(color: theme.colorScheme.onBackground),
+                          ),
+                          const SizedBox()
+                        ],
+                      )),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
                       height: context.screenHeight() * 0.05,
                       width: context.screenWidth() * 0.2,
                       decoration: BoxDecoration(
@@ -139,28 +122,52 @@ class HomePortrait extends ConsumerWidget {
                           ]),
                       child: Center(
                         child: Icon(
-                          FontAwesomeIcons.filter,
+                          FontAwesomeIcons.globe,
                           color: theme.colorScheme.onBackground,
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20,),
-              Expanded(
-                child: ListView.separated(
+                    GestureDetector(
+                      onTap: () {
+                        showBottom(context: context);
+                      },
+                      child: Container(
+                        height: context.screenHeight() * 0.05,
+                        width: context.screenWidth() * 0.2,
+                        decoration: BoxDecoration(
+                            color: theme.scaffoldBackgroundColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: theme.shadowColor,
+                                  offset: const Offset(0, 1),
+                                  blurRadius: 7)
+                            ]),
+                        child: Center(
+                          child: Icon(
+                            FontAwesomeIcons.filter,
+                            color: theme.colorScheme.onBackground,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Expanded(
+                  child: ListView.separated(
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DetailPortrait(
-                                      country: countries[index])));
+                                  builder: (context) =>
+                                      DetailPortrait(country: countries[index])));
                         },
-                        child: CountryCard(
-                            country: countries[index], theme: theme),
+                        child:
+                            CountryCard(country: countries[index], theme: theme),
                       );
                     },
                     separatorBuilder: (_, __) {
@@ -169,15 +176,20 @@ class HomePortrait extends ConsumerWidget {
                       );
                     },
                     itemCount: countries.length > 15 ? 15 : countries.length,
-                physics: const BouncingScrollPhysics(),
-                ),
-              )
-            ],
+                    physics: const BouncingScrollPhysics(),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       );
     }, error: (_, __) {
-      return Center(child:  Text('error',style: TextStyle(color: theme.colorScheme.onBackground),));
+      return Center(
+          child: Text(
+        'Unable to fetch data',
+        style: TextStyle(color: theme.colorScheme.onBackground),
+      ));
     }, loading: () {
       return SpinKitChasingDots(
         color: theme.primaryColor,

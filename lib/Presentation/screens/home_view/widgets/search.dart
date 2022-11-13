@@ -1,4 +1,5 @@
 import 'package:all_countries/Logic/view_model_provider.dart';
+import 'package:all_countries/Presentation/constants/theme/theme.dart';
 import 'package:all_countries/Presentation/screens/home_view/widgets/country_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../Data/model/country.dart';
 
 class ShowSearch extends SearchDelegate {
+  final bool isDark;
+  ShowSearch({required this.isDark});
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return isDark? AppThemes.darkTheme : AppThemes.lightTheme;
+  }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
